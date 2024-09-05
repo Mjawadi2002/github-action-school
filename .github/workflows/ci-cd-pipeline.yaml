@@ -44,12 +44,12 @@ jobs:
         uses: actions/checkout@v4
       - name: Login to Dockerhub
         env:
-            DOCKER_USERNAME: ${{ secrets.dockerusername }}
-            DOCKER_PASSWORD: ${{ secrets.dockerpassword }}
-        run: docker login -u $secrets.dockerusername -p $secrets.dockerpassword
+            DOCKER_USERNAME: ${{ secrets.DOCKERUSERNAME }}
+            DOCKER_PASSWORD: ${{ secrets.DOCKERPASSWORD }}
+        run: docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
       - name: Build docker image
-        run: docker build -t ${{ secrets.dockerusername }}/github-action-school .
+        run: docker build -t ${{ secrets.DOCKERUSERNAME }}/github-action-school .
       - name: Push to Dockerhub
         if: ${{ inputs['skip-push'] != 'true' }}
-        run: docker push ${{ secrets.dockerusername }}/github-action-school
+        run: docker push ${{ secrets.DOCKERUSERNAME }}/github-action-school
   
