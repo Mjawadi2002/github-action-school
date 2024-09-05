@@ -46,7 +46,7 @@ jobs:
         env:
             DOCKER_USERNAME: ${{ secrets.dockerusername }}
             DOCKER_PASSWORD: ${{ secrets.dockerpassword }}
-        run: docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
+        run: docker login -u $secrets.dockerusername -p $secrets.dockerpassword
       - name: Build docker image
         run: docker build -t ${{ secrets.dockerusername }}/github-action-school .
       - name: Push to Dockerhub
